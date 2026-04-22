@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Interview Agent</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-dot"></div>
+        <div>
+          <h1>AI Interview Agent</h1>
+          <p>Realtime interviewing, scoring, and candidate analysis</p>
+        </div>
+      </div>
+      <div class="topbar-badge" id="connectionBadge">Disconnected</div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel panel-hero">
+        <div class="hero-left">
+          <p class="eyebrow">SMART HIRING SYSTEM</p>
+          <h2>AI-based interview system to ask questions and evaluate candidates.</h2>
+          <p class="hero-text">
+            Set the job details, start the interview, answer questions, and view the final evaluation.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="startBtn">Start Interview</button>
+            <button class="btn btn-secondary" id="endBtn">Disconnect</button>
+            <button class="btn btn-secondary" id="reportBtn">Generate Report</button>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="mini-stat">
+            <span>Session Status</span>
+            <strong id="sessionStatus">Idle</strong>
+          </div>
+          <div class="mini-stat">
+            <span>Candidate</span>
+            <strong id="candidateNamePreview">Not set</strong>
+          </div>
+          <div class="mini-stat">
+            <span>Role</span>
+            <strong id="rolePreview">Backend Engineer</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-two">
+        <div class="panel">
+          <div class="section-title">
+            <h3>Interview Setup</h3>
+            <span>Configure the job before starting</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="candidateName">Candidate Name</label>
+              <input id="candidateName" type="text" placeholder="Enter candidate name" />
+            </div>
+
+            <div class="field">
+              <label for="roleTitle">Role Title</label>
+              <input id="roleTitle" type="text" value="Backend Engineer" />
+            </div>
+
+            <div class="field">
+              <label for="seniority">Seniority</label>
+              <select id="seniority">
+                <option>Junior</option>
+                <option selected>Mid-Level</option>
+                <option>Senior</option>
+                <option>Lead</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="questionCount">Question Count</label>
+              <input id="questionCount" type="number" min="3" max="15" value="6" />
+            </div>
+
+            <div class="field field-full">
+              <label for="skills">Required Skills</label>
+              <input id="skills" type="text" placeholder="Python, FastAPI, SQL, REST APIs, Debugging" />
+            </div>
+
+            <div class="field field-full">
+              <label for="jobDescription">Job Description</label>
+              <textarea id="jobDescription" rows="7" placeholder="Paste the job description here..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-title">
+            <h3>Live Transcript</h3>
+            <span>Saved from backend after the session ends</span>
+          </div>
+
+          <div class="transcript-box" id="transcriptBox">
+            <div class="message assistant">
+              <span class="message-role">System</span>
+              <p>Start the interview, talk with the AI, then generate the report.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-two bottom-grid">
+        <div class="panel">
+          <div class="section-title">
+            <h3>Final Evaluation</h3>
+            <span>Candidate scoring and hiring recommendation</span>
+          </div>
+
+          <div class="score-hero">
+            <div class="score-ring">
+              <div class="score-ring-inner">
+                <span>Score</span>
+                <strong id="finalScore">--</strong>
+              </div>
+            </div>
+
+            <div class="score-meta">
+              <div class="meta-row">
+                <span>Recommendation</span>
+                <strong id="recommendation">Pending</strong>
+              </div>
+              <div class="meta-row">
+                <span>Summary</span>
+                <p id="summaryText">No evaluation yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="score-grid">
+            <div class="score-card">
+              <span>Technical</span>
+              <strong id="technicalScore">--</strong>
+            </div>
+            <div class="score-card">
+              <span>Problem Solving</span>
+              <strong id="problemSolvingScore">--</strong>
+            </div>
+            <div class="score-card">
+              <span>Communication</span>
+              <strong id="communicationScore">--</strong>
+            </div>
+            <div class="score-card">
+              <span>Role Fit</span>
+              <strong id="roleFitScore">--</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-title">
+            <h3>Insights</h3>
+            <span>Strengths and concerns extracted by AI</span>
+          </div>
+
+          <div class="insight-columns">
+            <div class="insight-block">
+              <h4>Strengths</h4>
+              <ul id="strengthsList">
+                <li>No insights yet.</li>
+              </ul>
+            </div>
+
+            <div class="insight-block">
+              <h4>Concerns</h4>
+              <ul id="concernsList">
+                <li>No concerns yet.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/static/script.js"></script>
+</body>
+</html>
